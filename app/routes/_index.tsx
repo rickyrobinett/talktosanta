@@ -256,6 +256,15 @@ export default function Index() {
           >
             Cloudflare Workers
           </a>
+          {", "}
+          <a 
+            href="https://developers.cloudflare.com/calls/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="underline hover:text-white/90 transition-colors"
+          >
+            Cloudflare Calls
+          </a>
           {" "}and{" "}
           <a 
             href="https://openai.com" 
