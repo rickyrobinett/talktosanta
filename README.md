@@ -1,47 +1,59 @@
-# Welcome to Remix + Cloudflare!
+# Remix + Cloudflare WebRTC Application
 
-- 📖 [Remix docs](https://remix.run/docs)
-- 📖 [Remix Cloudflare docs](https://remix.run/guides/vite#cloudflare)
+A Remix application running on Cloudflare Pages with WebRTC support.
+
+## Prerequisites
+
+- Node.js >= 20.0.0
+- Cloudflare account with:
+  - Account ID
+  - API token with TURN server permissions
+- OpenAI API key with access to GPT-4 realtime preview
+
+## Environment Variables
+
+Create a `.dev.vars` file in the root directory with:
+
+CLOUDFLARE_ACCOUNT_ID=your_account_id
+CLOUDFLARE_API_TOKEN=your_api_token
+OPENAI_API_KEY=your_openai_api_key
 
 ## Development
 
-Run the dev server:
+1. Install dependencies:
 
-```sh
-npm run dev
-```
+    npm install
 
-To run Wrangler:
+2. Generate Cloudflare types:
 
-```sh
-npm run build
-npm run start
-```
+    npm run typegen
 
-## Typegen
+3. Run the development server:
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
+    npm run preview
 
-```sh
-npm run typegen
-```
-
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
 
 ## Deployment
 
-First, build your app for production:
+Deploy to Cloudflare Pages:
 
-```sh
-npm run build
-```
+    npm run deploy
 
-Then, deploy your app to Cloudflare Pages:
+Make sure to configure the following environment variables in your Cloudflare Pages project settings:
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN`
+- `OPENAI_API_KEY`
 
-```sh
-npm run deploy
-```
+## Technology Stack
 
-## Styling
+- [Remix](https://remix.run/docs)
+- [Cloudflare Pages](https://developers.cloudflare.com/pages)
+- [Cloudflare TURN Server](https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/platform/turn/)
+- [OpenAI GPT-4](https://platform.openai.com/docs)
+- [Tailwind CSS](https://tailwindcss.com)
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+## Additional Notes
+
+- After making changes to `wrangler.toml`, rerun `npm run typegen` to update TypeScript definitions
+- The application uses Cloudflare's TURN server for WebRTC connectivity
+- Tailwind CSS is pre-configured for styling

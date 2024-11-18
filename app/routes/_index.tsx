@@ -99,7 +99,14 @@ export default function Index() {
   const startSession = async () => {
     if (typeof window === "undefined") return;
 
-    const peerConnection = new RTCPeerConnection();
+    // Fetch TURN credentials before creating the connection
+    const turnResponse = await fetch('/turn');
+    const { iceServers } = await turnResponse.json();
+    
+    const peerConnection = new RTCPeerConnection({
+      iceServers: [iceServers]
+    });
+    
     setIsSessionActive(true);
 
     try {
